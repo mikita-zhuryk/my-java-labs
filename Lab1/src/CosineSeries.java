@@ -1,6 +1,14 @@
-public class CosineSeriesSum {
+public class CosineSeries {
 
-    public static double calculate(double x, int accuracy) {
+    private double x;
+    private int accuracy;
+
+    public CosineSeries(double x, int accuracy) {
+        this.x = x;
+        this.accuracy = accuracy;
+    }
+
+    public double calculateSum() {
         double difference = Math.pow(10, -accuracy);
         double seriesPartialSum = 0.0;
         double currentTerm = 1.0;
@@ -11,6 +19,10 @@ public class CosineSeriesSum {
             currentFactorialNumber += 2;
         }
         return seriesPartialSum;
+    }
+
+    public double builtInCosine() {
+        return Math.cos(x);
     }
 
 }
