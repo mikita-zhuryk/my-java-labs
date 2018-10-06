@@ -1,30 +1,82 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TextEditor {
 
-    private String text;
+    private StringBuilder text;
 
     public TextEditor() {
-        text = new String();
+        text = new StringBuilder();
     }
 
     public void readText() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Write your text");
-        String temp = new String(sc.nextLine());
+        String temp = sc.nextLine();
         while (!temp.contentEquals("")) {
-            text += temp;
+            text.append(temp);
             temp = sc.nextLine();
         }
     }
 
     public String removeNumbersFromTextCopy() {
-        String[] words = text.split("[0-9]+[ ,.]");
+        List<String> delimArray = buildDelimArray();
+        String s = text.toString();
+        StringTokenizer st = new StringTokenizer(s, " .,");
+        String token;
         StringBuilder result = new StringBuilder();
-        for(String word: words) {
-            result.append(word);
+        int delimCounter = 0;
+        if (isDelimiter(s.charAt(0))) {
+            result.append(delimArray.get(0));
+            delimCounter = 1;
+        }
+        while (st.hasMoreTokens()) {
+            token = st.nextToken();
+            if (!isNumber(token)) {
+                result.append(token);
+            }
+            if (delimCounter < delimArray.size()) {
+                result.append(delimArray.get(delimCounter));
+                ++delimCounter;
+            }
         }
         return result.toString();
+    }
+
+    private List<String> buildDelimArray() {
+        List<String> delimArray = new ArrayList<String>();
+        Pattern p = Pattern.compile("[. ,]+");
+        Matcher m = p.matcher(text.toString());
+        while (m.find()) {
+            delimArray.add(m.group(0));
+        }
+        return delimArray;
+    }
+
+    private boolean isNumber(String token) {
+        char c;
+        for (int i = 0; i < token.length(); ++i) {
+            c = token.charAt(i);
+            if (!Character.isDigit(c)) {
+                if ((i != 0) || (c != '-')) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean isDelimiter(char c) {
+        if ((c == ' ') || (c == '.') || (c == ',')) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }
