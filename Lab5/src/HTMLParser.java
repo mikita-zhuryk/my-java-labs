@@ -60,20 +60,19 @@ public class HTMLParser {
                     if (!findMap.containsKey(token)) {
                         findMap.put(token, i + 1);
                     }
-//                    tokens.remove(token);
                 }
             }
             ++i;
         }
-        try(PrintWriter pw = new PrintWriter(outPath)) {
+        try(PrintWriter pw2 = new PrintWriter(outPath);
+            PrintWriter pw3 = new PrintWriter(outPathNotFound)) {
             for (Map.Entry<String, Integer> item : findMap.entrySet()) {
-                pw.print(item.getKey() + " found in line #" + item.getValue() + '\n');
+                pw2.print(item.getKey() + " found in line #" + item.getValue() + '\n');
             }
-        }
-        try(PrintWriter pw = new PrintWriter(outPathNotFound)) {
             for (String token: tokens) {
                 if (!findMap.containsKey(token)) {
-                    pw.print(token + " not found.\n");
+                    pw2.print(token + " found in line #-1\n");
+                    pw3.print(token + " not found\n");
                 }
             }
         }

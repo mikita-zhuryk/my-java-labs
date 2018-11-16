@@ -1,0 +1,30 @@
+[{
+	"address": "Minsk",
+	"dateUpdate": "20/10/2018 11:02 MSK",
+	"name": "Akvait",
+	"auditor": "hz",
+	"dateFoundation": 2010,
+	"shortTitle": "Akv",
+	"countEmployees": 20,
+	"email": "info@akvait.by"
+}, {
+	"address": "Minsk",
+	"dateUpdate": "20/10/2018 11:02 MSK",
+	"name": "Akvait",
+	"auditor": "hz",
+	"link": "akvait.by",
+	"dateFoundation": 2010,
+	"shortTitle": "Akv",
+	"countEmployees": 20,
+	"email": "info@akvait.by"
+}, {
+	"address": "Minsk",
+	"dateUpdate": "20/10/2018 11:02 MSK",
+	"name": "Akvait",
+	"auditor": "hz",
+	"link": "akvait.by",
+	"dateFoundation": 2010,
+	"shortTitle": "Akv",
+	"countEmployees": 20,
+	"email": "service@akvait.by"
+}]

@@ -22,6 +22,7 @@ public class Main {
     private List<String> readTokens(String inPath) throws FileNotFoundException {
         List<String> tokens = new ArrayList<>();
         Scanner sc = new Scanner(new File(inPath));
+        sc.useDelimiter("[\\r\\n\\s]*;[\\r\\n\\s]*");
         while(sc.hasNext()) {
             tokens.add(sc.next());
         }
