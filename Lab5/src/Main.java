@@ -10,9 +10,9 @@ public class Main {
         HTMLParser parser = new HTMLParser();
         try {
             Main m = new Main();
-            parser.readHTML("Lab5\\src\\input1.html");
-            parser.printTags("Lab5\\src\\output1.out");
-            parser.findTokens(m.readTokens("Lab5\\src\\input2.in"), "Lab5\\src\\output2.out", "Lab5\\src\\output3.out");
+            parser.readHTML("Lab5\\input1.html");
+            parser.printTags("Lab5\\output1.out");
+            parser.findTokens(m.readTokens("Lab5\\input2.in"), "Lab5\\output2.out", "Lab5\\output3.out");
         }
         catch (FileNotFoundException fnfe) {
             System.err.println(fnfe.getMessage());

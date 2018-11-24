@@ -7,9 +7,7 @@ public class HTMLParser {
 
     private String html;
 
-    public HTMLParser() {
-        html = new String();
-    }
+    public HTMLParser() { }
 
     public void readHTML(String inPath) throws FileNotFoundException {
         try(Scanner sc = new Scanner(new File(inPath))) {
@@ -42,8 +40,7 @@ public class HTMLParser {
             }
         });
         try(PrintStream ps = new PrintStream(outPath)) {
-            tags.stream()
-                .forEach(tag -> {ps.println(tag);});
+            tags.forEach(ps::println);
         }
     }
 

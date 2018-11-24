@@ -1,4 +1,4 @@
-.idea
 compiled
-input.*..*
-output.*..*
+[./]*input.*..*
+[./]*output.*..*
+[./]*.idea
