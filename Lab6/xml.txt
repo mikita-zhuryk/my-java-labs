@@ -1,34 +1,15 @@
 <companies>
 	<company>
 		<address>Minsk</address>
-		<dateUpdate>20/10/2018 11:02 MSK</dateUpdate>
-		<name>Akvait</name>
-		<auditor>hz</auditor>
-		<dateFoundation>2010</dateFoundation>
-		<shortTitle>Akv</shortTitle>
-		<countEmployees>20</countEmployees>
-		<email>info@akvait.by</email>
-	</company>
-	<company>
-		<address>Minsk</address>
-		<dateUpdate>20/10/2018 11:02 MSK</dateUpdate>
+		<activity>importing</activity>
+		<dateUpdate>2018-10-20</dateUpdate>
 		<name>Akvait</name>
 		<auditor>hz</auditor>
 		<link>akvait.by</link>
-		<dateFoundation>2010</dateFoundation>
+		<dateFoundation>2010-08-15</dateFoundation>
 		<shortTitle>Akv</shortTitle>
 		<countEmployees>20</countEmployees>
-		<email>info@akvait.by</email>
-	</company>
-	<company>
-		<address>Minsk</address>
-		<dateUpdate>20/10/2018 11:02 MSK</dateUpdate>
-		<name>Akvait</name>
-		<auditor>hz</auditor>
-		<link>akvait.by</link>
-		<dateFoundation>2010</dateFoundation>
-		<shortTitle>Akv</shortTitle>
-		<countEmployees>20</countEmployees>
+		<branch>chems</branch>
 		<email>service@akvait.by</email>
 	</company>
 </companies>

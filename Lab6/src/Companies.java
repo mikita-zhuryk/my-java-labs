@@ -40,51 +40,58 @@ public class Companies {
         }
         Companies comp;
         if (sc.hasNext()) {
-            switch (key) {
-                case "shortTitle": {
-                    comp = filterShortTitle(sc.next());
-                    break;
-                }
-                case "branch": {
-                    comp = filterBranch(sc.next());
-                    break;
-                }
-                case "activity": {
-                    comp = filterActivity(sc.next());
-                    break;
-                }
-                case "dateFoundation": {
-                    String from = sc.next();
-                    String to;
-                    if (sc.hasNext()) {
-                        to = sc.next();
-                    }
-                    else {
-                        to = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
-                    }
-                    comp = filterDateFoundation(from, to);
-                    break;
-                }
-                case "employeeCount": {
-                    int from = sc.nextInt();
-                    int to;
-                    if (sc.hasNext()) {
-                        to = sc.nextInt();
-                    }
-                    else {
-                        to = Integer.MAX_VALUE;
-                    }
-                    comp = filterEmployeeCount(from, to);
-                }
-                default: {
-                    comp = null;
-                }
-            }
+            comp = requestSwitch(key, sc);
         }
         else {
             throw new Exception("No request value found");
         }
         logger.logRequest(request, comp.length());
+        return comp;
+    }
+
+    private Companies requestSwitch(String key, Scanner sc) {
+        Companies comp;
+        switch (key) {
+            case "shortTitle": {
+                comp = filterShortTitle(sc.next());
+                break;
+            }
+            case "branch": {
+                comp = filterBranch(sc.next());
+                break;
+            }
+            case "activity": {
+                comp = filterActivity(sc.next());
+                break;
+            }
+            case "dateFoundation": {
+                String from = sc.next();
+                String to;
+                if (sc.hasNext()) {
+                    to = sc.next();
+                }
+                else {
+                    to = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+                }
+                comp = filterDateFoundation(from, to);
+                break;
+            }
+            case "countEmployees": {
+                int from = sc.nextInt();
+                int to;
+                if (sc.hasNext()) {
+                    to = sc.nextInt();
+                }
+                else {
+                    to = Integer.MAX_VALUE;
+                }
+                comp = filterEmployeeCount(from, to);
+                break;
+            }
+            default: {
+                comp = null;
+            }
+        }
         return comp;
     }
 

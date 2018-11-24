@@ -29,47 +29,59 @@ public class Menu {
     private void act() throws Exception {
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
-        StringBuilder request = new StringBuilder("");
         try {
-            switch (choice) {
-                case 1: {
-                    request.append("shortTitle, ");
-                    request.append(sc.next());
-                    break;
-                }
-                case 2: {
-                    request.append("branch, ");
-                    request.append(sc.next());
-                    break;
-                }
-                case 3: {
-                    request.append("activity, ");
-                    request.append(sc.next());
-                    break;
-                }
-                case 4: {
-                    request.append("dateFoundation, ");
-                    request.append(sc.nextInt());
-                    request.append(", ");
-                    request.append(sc.nextInt());
-                    break;
-                }
-                case 5: {
-                    request.append("countEmployees, ");
-                    request.append(sc.nextInt());
-                    request.append(", ");
-                    request.append(sc.nextInt());
-                    break;
-                }
-            }
-            process(request.toString());
+            String request = buildRequest(choice, sc);
+            processRequest(request);
         }
         catch (IOException ioe) {
             System.err.println(ioe.getMessage());
         }
     }
 
-    private void process(String request) throws Exception {
+    private String buildRequest(int choice, Scanner sc) {
+        StringBuilder request = new StringBuilder();
+        switch (choice) {
+            case 1: {
+                request.append("shortTitle, ");
+                System.out.println("Enter short title\r\n");
+                request.append(sc.next());
+                break;
+            }
+            case 2: {
+                request.append("branch, ");
+                System.out.println("Enter branch\r\n");
+                request.append(sc.next());
+                break;
+            }
+            case 3: {
+                request.append("activity, ");
+                System.out.println("Enter activity\r\n");
+                request.append(sc.next());
+                break;
+            }
+            case 4: {
+                request.append("dateFoundation, ");
+                System.out.println("Enter lower date border\r\n");
+                request.append(sc.next());
+                request.append(", ");
+                System.out.println("Enter upper date border\r\n");
+                request.append(sc.next());
+                break;
+            }
+            case 5: {
+                request.append("countEmployees, ");
+                System.out.println("Enter lower employees # border\r\n");
+                request.append(sc.nextInt());
+                request.append(", ");
+                System.out.println("Enter upper employees # border\r\n");
+                request.append(sc.nextInt());
+                break;
+            }
+        }
+        return request.toString();
+    }
+
+    private void processRequest(String request) throws Exception {
         Companies response = companyData.process(request, logger);
         try(FileWriter jsonWriter = new FileWriter("Lab6\\json.txt");
             FileWriter xmlWriter = new FileWriter("Lab6\\xml.txt")) {

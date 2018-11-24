@@ -17,8 +17,24 @@ public class Logger {
         logWriter.write(logMsg);
     }
 
-    public void closeLogFile() throws IOException {
-        logWriter.close();
+    public void log(String msg) {
+        try {
+            String logMsg = String.format("STARTUP: [%1s] MESSAGE: [%2s]\r\n", startupDate.toString(),
+                    msg);
+            logWriter.write(logMsg);
+        }
+        catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    public void closeLogFile() {
+        try {
+            logWriter.close();
+        }
+        catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 
 }

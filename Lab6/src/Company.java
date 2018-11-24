@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 public class Company {
@@ -26,14 +27,16 @@ public class Company {
     }
 
     public boolean dateBetween(String from, String to) {
-        LocalDate dateFrom = LocalDate.parse(from);
-        LocalDate dateTo = LocalDate.parse(to);
-        LocalDate date = LocalDate.parse((String)data.get("dateFoundation"));
-        return (date.isAfter(dateFrom) && date.isBefore(dateTo));
+        LocalDate dateFrom = LocalDate.parse(from, DateTimeFormatter.ISO_DATE);
+        LocalDate dateTo = LocalDate.parse(to, DateTimeFormatter.ISO_DATE);
+        String dateS = (String)data.get("dateFoundation");
+        LocalDate date = LocalDate.parse(dateS);
+        return (date.isAfter(dateFrom) && date.isBefore(dateTo)
+                || date.isEqual(dateFrom) || date.isEqual(dateTo));
     }
 
     public boolean employeeNumberBetween(int from, int to) {
-        int num = (int)data.get("employeeCount");
+        int num = Integer.parseInt((String)data.get("countEmployees"));
         return (num >= from) && (num <= to);
     }
 
