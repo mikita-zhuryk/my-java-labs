@@ -9,9 +9,7 @@ public class Main {
             logger = new Logger("Lab6\\logfile.txt");
             CSVParser parser = new CSVParser();
             Companies companies = new Companies(parser.readData("Lab6\\data.csv"));
-            JSONParser json = new JSONParser();
-            XMLParser xml = new XMLParser();
-            Menu menu = new Menu(companies, json, xml, logger);
+            Menu menu = new Menu(companies, logger);
             menu.show();
         }
         catch (FileNotFoundException fnfe) {

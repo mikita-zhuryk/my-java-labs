@@ -1,9 +1,6 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Companies {
@@ -11,12 +8,20 @@ public class Companies {
     private List<Company> companyData;
     private static List<String> keys;
 
+    public Companies() {
+        companyData = new ArrayList<>();
+    }
+
     public Companies(List<Company> data) {
         companyData = data;
     }
 
     public static void setKeys(List<String> k) {
         keys = k;
+    }
+
+    public void add(Company company) {
+        companyData.add(company);
     }
 
     public int length() {
@@ -30,7 +35,8 @@ public class Companies {
     }
 
     public Companies process(String request, Logger logger) throws Exception {
-        Scanner sc = new Scanner(request).useDelimiter(", ");
+        StringTokenizer st = new StringTokenizer(request, ";");
+        Scanner sc = new Scanner(st.nextToken()).useDelimiter(", ");
         String key;
         if (sc.hasNext()) {
             key = sc.next();
@@ -46,13 +52,14 @@ public class Companies {
             throw new Exception("No request value found");
         }
         logger.logRequest(request, comp.length());
+
         return comp;
     }
 
     private Companies requestSwitch(String key, Scanner sc) {
         Companies comp;
-        switch (key) {
-            case "shortTitle": {
+        switch (key.toLowerCase()) {
+            case "shorttitle": {
                 comp = filterShortTitle(sc.next());
                 break;
             }
@@ -64,7 +71,7 @@ public class Companies {
                 comp = filterActivity(sc.next());
                 break;
             }
-            case "dateFoundation": {
+            case "datefoundation": {
                 String from = sc.next();
                 String to;
                 if (sc.hasNext()) {
@@ -76,7 +83,7 @@ public class Companies {
                 comp = filterDateFoundation(from, to);
                 break;
             }
-            case "countEmployees": {
+            case "countemployees": {
                 int from = sc.nextInt();
                 int to;
                 if (sc.hasNext()) {

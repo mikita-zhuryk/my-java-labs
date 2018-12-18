@@ -1,0 +1,24 @@
+[{
+	"address": "Minsk",
+	"activity": "trading",
+	"dateUpdate": "2018-10-20",
+	"name": "Akvait",
+	"auditor": "hz",
+	"dateFoundation": "2010-08-12",
+	"shortTitle": "Akv",
+	"countEmployees": 10,
+	"branch": "chems",
+	"email": "info@akvait.by"
+}, {
+	"address": "Minsk",
+	"activity": "importing",
+	"dateUpdate": "2018-10-20",
+	"name": "Akvait",
+	"auditor": "hz",
+	"link": "akvait.by",
+	"dateFoundation": "2010-08-15",
+	"shortTitle": "Akv",
+	"countEmployees": 20,
+	"branch": "chems",
+	"email": "service@akvait.by"
+}]

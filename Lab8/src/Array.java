@@ -10,10 +10,10 @@ public class Array {
         array = new Integer[size];
     }
 
-    public void fillRandom() {
+    public void fillRandom(int min, int max) {
         Random r = new Random();
         for (int i = 0; i < array.length; ++i) {
-            array[i] = r.nextInt(100);
+            array[i] = r.nextInt(max - min + 1) + min;
         }
     }
 
@@ -35,11 +35,11 @@ public class Array {
     }
 
     private void printSortInfo() {
-        System.out.println("Choose sort method:\n");
-        System.out.println("1. Increasing value\n");
-        System.out.println("2. Decreasing value\n");
-        System.out.println("3. Increasing number of digits\n");
-        System.out.println("4. Decreasing number of digits\n");
+        System.out.println("Choose sort method:");
+        System.out.println("1. Increasing value");
+        System.out.println("2. Decreasing value");
+        System.out.println("3. Increasing number of digits");
+        System.out.println("4. Decreasing number of digits");
     }
 
 }

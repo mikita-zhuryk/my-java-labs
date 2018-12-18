@@ -9,9 +9,7 @@ public class JSONParser {
     public String toJSON(List<Map<String, Object>> data) {
         StringBuilder sb = new StringBuilder();
         int objNum = data.size();
-        if (objNum > 1) {
-            sb.append('[');
-        }
+        sb.append('[');
         Map<String, Object> company;
         Integer lastComma;
         for (int i = 0; i < objNum; ++i) {
@@ -29,9 +27,7 @@ public class JSONParser {
                 }
             }
         }
-        if (objNum > 1) {
-            sb.append(']');
-        }
+        sb.append(']');
         return sb.toString();
     }
 

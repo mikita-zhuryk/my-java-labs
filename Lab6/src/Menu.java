@@ -1,18 +1,17 @@
-import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
 
     private Companies companyData;
-    private JSONParser jsonParser;
-    private XMLParser xmlParser;
     private Logger logger;
 
-    public Menu(Companies companies, JSONParser jsonP, XMLParser xmlP, Logger l) {
+    private final int CHOSE_SQL = 6;
+
+    public Menu(Companies companies, Logger l) {
         companyData = companies;
-        jsonParser = jsonP;
-        xmlParser = xmlP;
         logger = l;
     }
 
@@ -23,6 +22,7 @@ public class Menu {
         System.out.println("3. Find a company via activity type;");
         System.out.println("4. Find a company via foundation date interval;");
         System.out.println("5. Find a company via employee count.");
+        System.out.println("6. Process SQL SELECT requests.");
         act();
     }
 
@@ -30,11 +30,29 @@ public class Menu {
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
         try {
-            String request = buildRequest(choice, sc);
-            processRequest(request);
+            if (choice == CHOSE_SQL) {
+                processSQL();
+            }
+            else {
+                String request = buildRequest(choice, sc);
+                List<String> keys = new ArrayList<>();
+                PrintController.print("manual", processRequest(request), keys);
+            }
         }
         catch (IOException ioe) {
             System.err.println(ioe.getMessage());
+        }
+    }
+
+    private void processSQL() throws Exception {
+        SQLParser sqlp = new SQLParser();
+        sqlp.readRequests("Lab6\\requests.txt");
+        int i = 0;
+        while (sqlp.hasMoreRequests()) {
+            KeyedRequest kr = sqlp.parseRequest();
+            Companies data = processRequest(kr.getRequest());
+            PrintController.print("request" + (i + 1), data, kr.getKeys());
+            ++i;
         }
     }
 
@@ -81,13 +99,8 @@ public class Menu {
         return request.toString();
     }
 
-    private void processRequest(String request) throws Exception {
-        Companies response = companyData.process(request, logger);
-        try(FileWriter jsonWriter = new FileWriter("Lab6\\json.txt");
-            FileWriter xmlWriter = new FileWriter("Lab6\\xml.txt")) {
-            jsonWriter.write(jsonParser.toJSON(response.rawData()));
-            xmlWriter.write(xmlParser.toXML(response.rawData()));
-        }
+    private Companies processRequest(String request) throws Exception {
+        return companyData.process(request, logger);
     }
 
 }

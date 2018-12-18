@@ -14,6 +14,10 @@ public class Company {
         return data;
     }
 
+    public Object get(String key) {
+        return data.get(key);
+    }
+
     public boolean shortTitleEquals(String sh) {
         return data.get("shortTitle").equals(sh);
     }

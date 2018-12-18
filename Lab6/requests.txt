@@ -1,0 +1,3 @@
+SELECT shortTitle, branch, name FROM dataBase WHERE SHORTTITLE=TraDe;
+SELECT * FROM dataBase WHERE countemployees BETWEEN 10 AND 20;
+SELECT * FROM dataBase WHERE bRanCh=chems
