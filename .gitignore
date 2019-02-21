@@ -2,3 +2,5 @@ compiled
 [./]*input.*..*
 [./]*output.*..*
 [./]*.idea
+Julia/
+Control7/

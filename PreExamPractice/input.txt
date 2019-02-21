@@ -1,0 +1,7 @@
+NoT(not(A or b) or not (b or c));
+b or a and c;
+(c and b) or a and (b or not a) or false;
+not b;not a;not c;
+TRUE AND NOT TRUE;
+(true AND false) AND TrUe;
+(true AND true) OR false AND (TRUE or tRUe) Or FalSe;
